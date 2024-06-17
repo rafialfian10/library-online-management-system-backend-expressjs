@@ -8,6 +8,7 @@ router.get("/fines-by-user", userAuth, fineController.getFinesByUser);
 router.get("/fine/:id", userAuth, fineController.getFine);
 router.post("/fine", userAuth, fineController.createFine);
 router.patch("/fine/:id", userAuth, fineController.updateFine);
+router.patch("/fine-status-by-admin/:id", adminAuth, fineController.updateFineByAdmin);
 router.delete("/fine/:id", adminAuth, fineController.deleteFine);
 router.post("/notification", fineController.notification);
 

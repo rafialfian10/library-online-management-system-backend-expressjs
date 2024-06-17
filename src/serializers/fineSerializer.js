@@ -65,3 +65,21 @@ exports.validateUpdateFineRequest = (fineData) => {
     return error.message;
   }
 };
+
+exports.validateUpdateFineAdminRequest = (fineData) => {
+  const schema = joi.object({
+    idBook: joi.number().required(),
+    idUser: joi.string().required(),
+    status: joi.string(),
+  });
+
+  try {
+    const { error } = schema.validate(fineData, { allowUnknown: true });
+    if (error) {
+      throw new Error(`request data invalid: ${error}`);
+    }
+    return null;
+  } catch (error) {
+    return error.message;
+  }
+};

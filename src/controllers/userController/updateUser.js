@@ -100,7 +100,7 @@ module.exports = async (req, res) => {
       parseInt(req.body.roleId) !== user.roleId
     ) {
       user.roleId =
-        req.userData.roleId == 1 ? parseInt(req.body.roleId) : user.roleId; // only superadmin can update role
+        req.userData.roleId == 2 ? parseInt(req.body.roleId) : user.roleId; // only superadmin can update role
     }
 
     // update photo
