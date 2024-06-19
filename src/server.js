@@ -8,6 +8,7 @@ const router = require("./routes");
 const http = require("http");
 const { redisInit } = require("../config/redis");
 const customLogger = require("./pkg/middlewares/logger");
+const startCronJob = require("./cron/startCronJob"); 
 
 // socket io
 // const { Server } = require("socket.io");
@@ -67,6 +68,10 @@ app.use("/static", express.static(path.join(__dirname, "../uploads")));
 
 const port = process.env.PORT || 5000;
 
+// Start the cron job
+startCronJob();
+
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+

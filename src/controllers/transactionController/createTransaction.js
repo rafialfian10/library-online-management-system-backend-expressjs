@@ -15,7 +15,7 @@ const {
 module.exports = async (req, res) => {
   try {
     const currentDate = new Date();
-    const returnDate = new Date(currentDate.getTime() + 300000);
+    const returnDate = new Date(currentDate.getTime() + 60000);
 
     const newTransaction = {
       idBook: req.body.idBook,

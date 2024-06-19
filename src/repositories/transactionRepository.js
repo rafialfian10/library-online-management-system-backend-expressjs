@@ -150,8 +150,6 @@ exports.createTransaction = async (transaction) => {
       isStatus: transaction.isStatus,
     });
 
-    // create fine if return date expired
-
     // Update the quantity in the database
     await Books.update({ qty: updatedQuantity }, { where: { id: book.id } });
   } catch (error) {
