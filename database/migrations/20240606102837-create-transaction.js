@@ -42,10 +42,6 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date(),
       },
-      loan_maximum: {
-        type: Sequelize.DATE,
-        defaultValue: new Date(),
-      },
       is_status: {
         type: Sequelize.BOOLEAN
       },

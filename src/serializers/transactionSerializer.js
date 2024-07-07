@@ -18,7 +18,6 @@ exports.singleTransactionResponse = (transactionData) => {
     totalBook: transaction.totalBook,
     loanDate: transaction.loanDate,
     returnDate: transaction.returnDate,
-    loanMaximum: transaction.loanMaximum,
     isStatus: transaction.isStatus,
   };
 };
@@ -37,7 +36,6 @@ exports.validateCreateTransactionRequest = (transactionData) => {
     totalBook: joi.number().required(),
     loanDate: joi.date().iso().required(),
     returnDate: joi.date().iso().required(),
-    loanMaximum: joi.date().iso().required(),
     isStatus: joi.boolean().required(),
   });
 

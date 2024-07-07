@@ -28,6 +28,7 @@ exports.getTransactionsByAdmin = async (
         },
       ],
       attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+      order: [['id', 'DESC']], 
     });
     if (!response.data) {
       throw new Error("transactions data not found");
@@ -43,7 +44,7 @@ exports.getTransactionsByAdmin = async (
   return response;
 };
 
-exports.getTransactionsByUser = async (
+exports.getTransactionsBorrowByUser = async (
   userId,
   offset = 0,
   limit = 10,
@@ -55,7 +56,7 @@ exports.getTransactionsByUser = async (
     response.data = await Transactions.findAll({
       offset: offset,
       limit: limit,
-      where: { ...filter, idUser: userId },
+      where: { ...filter, idUser: userId, isStatus: 1 },
       include: [
         {
           model: Users,
@@ -71,13 +72,58 @@ exports.getTransactionsByUser = async (
         },
       ],
       attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+      order: [['id', 'DESC']], 
     });
     if (!response.data) {
       throw new Error("transactions data not found");
     }
 
     response.count = await Transactions.count({
-      where: { ...filter, idUser: userId },
+      where: { ...filter, idUser: userId, isStatus: 1 },
+    });
+  } catch (error) {
+    response.error = `error on get datas : ${error.message}`;
+  }
+
+  return response;
+};
+
+exports.getTransactionsReturnByUser = async (
+  userId,
+  offset = 0,
+  limit = 10,
+  filter = {}
+) => {
+  const response = { data: null, error: null, count: 0 };
+
+  try {
+    response.data = await Transactions.findAll({
+      offset: offset,
+      limit: limit,
+      where: { ...filter, idUser: userId, isStatus: 0 },
+      include: [
+        {
+          model: Users,
+          as: "user",
+          attributes: {
+            exclude: ["createdAt", "updatedAt", "deletedAt", "password"],
+          },
+        },
+        {
+          model: Books,
+          as: "book",
+          attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+        },
+      ],
+      attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+      order: [['id', 'DESC']], 
+    });
+    if (!response.data) {
+      throw new Error("transactions data not found");
+    }
+
+    response.count = await Transactions.count({
+      where: { ...filter, idUser: userId, isStatus: 0 },
     });
   } catch (error) {
     response.error = `error on get datas : ${error.message}`;
@@ -146,7 +192,6 @@ exports.createTransaction = async (transaction) => {
       totalBook: transaction.totalBook,
       loanDate: transaction.loanDate,
       returnDate: transaction.returnDate,
-      loanMaximum: transaction.loanMaximum,
       isStatus: transaction.isStatus,
     });
 

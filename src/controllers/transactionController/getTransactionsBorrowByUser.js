@@ -1,6 +1,6 @@
 const httpStatus = require("http-status");
 
-const { getTransactionsByUser } = require("../../repositories/transactionRepository");
+const { getTransactionsBorrowByUser } = require("../../repositories/transactionRepository");
 const {
   multipleTransactionResponse,
 } = require("../../serializers/transactionSerializer");
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
       data: transactions,
       count: totalTransactions,
       error,
-    } = await getTransactionsByUser(userId, offset, limit);
+    } = await getTransactionsBorrowByUser(userId, offset, limit);
     if (error) {
       const errors = new Error(error);
       errors.status = httpStatus.NOT_FOUND;

@@ -37,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       totalBook: DataTypes.INTEGER,
       loanDate: DataTypes.DATE,
       returnDate: DataTypes.DATE,
-      loanMaximum: DataTypes.DATE,
       isStatus: DataTypes.BOOLEAN,
     },
     {

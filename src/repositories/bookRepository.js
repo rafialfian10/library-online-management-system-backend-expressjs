@@ -24,6 +24,7 @@ exports.getBooks = async (offset = 0, limit = 10, filter = {}) => {
         },
       ],
       attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+      order: [["id", "DESC"]],
     });
 
     if (!response.data) {

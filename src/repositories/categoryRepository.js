@@ -12,6 +12,7 @@ exports.getCategories = async (offset = 0, limit = 10, filter = {}) => {
       limit: limit,
       where: filter,
       attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+      order: [['id', 'DESC']], 
     });
 
     if (!response.data) {

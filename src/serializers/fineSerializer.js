@@ -13,6 +13,7 @@ exports.singleFineResponse = (fineData) => {
     user: fine.user,
     idBook: fine.idBook,
     book: fine.book,
+    idTransaction: fine.idTransaction,
     totalDay: fine.totalDay,
     totalFine: fine.totalFine,
     status: fine.status,
@@ -30,6 +31,7 @@ exports.validateCreateFineRequest = (fineData) => {
   const schema = joi.object({
     idBook: joi.number().required(),
     idUser: joi.string().required(),
+    idTransaction: joi.number().required(),
     totalDay: joi.number().required(),
     totalFine: joi.number().required(),
   });

@@ -1,5 +1,6 @@
 module.exports = {
-  getTransactionsByUser: require("./getTransactionsByUser"),
+  getTransactionsBorrowByUser: require("./getTransactionsBorrowByUser"),
+  getTransactionsReturnByUser: require("./getTransactionsReturnByUser"),
   getTransactionsByAdmin: require("./getTransactionsByAdmin"),
   getTransaction: require("./getTransaction"),
   createTransaction: require("./createTransaction"),

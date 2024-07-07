@@ -15,7 +15,7 @@ const {
 module.exports = async (req, res) => {
   try {
     const currentDate = new Date();
-    const returnDate = new Date(currentDate.getTime() + 60000);
+    const returnDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000); // Add 7 days
 
     const newTransaction = {
       idBook: req.body.idBook,
@@ -24,7 +24,6 @@ module.exports = async (req, res) => {
       totalBook: req.body.totalBook,
       loanDate: currentDate,
       returnDate: returnDate,
-      loanMaximum: returnDate,
       isStatus: true,
     };
 

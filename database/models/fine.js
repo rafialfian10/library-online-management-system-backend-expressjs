@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         allowNull: false,
       },
+      idTransaction: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       totalDay: DataTypes.INTEGER,
       totalFine: DataTypes.INTEGER,
       status: DataTypes.STRING,

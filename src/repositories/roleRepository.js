@@ -8,6 +8,7 @@ exports.getRoles = async (offset = 0, limit = 10, filter = {}) => {
       offset: offset,
       limit: limit,
       where: filter,
+      order: [['id', 'DESC']], 
     });
     if (!response.data) {
       throw new Error("roles data not found");
